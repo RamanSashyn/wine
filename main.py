@@ -3,14 +3,14 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from company_age_calculator import calculate_company_age
 from word_form_generator import get_year_word_form
-from product_data_reader import read_new_product_data
+from product_data_reader import read_new_product_data, get_file_path
 
 
-def render_page(foundation_year, today):
+def render_page(foundation_year, today, file_path):
     company_age = calculate_company_age(foundation_year, today)
     word_form = get_year_word_form(company_age)
 
-    grouped_wine_data = read_new_product_data()
+    grouped_wine_data = read_new_product_data(file_path)
 
     env = Environment(
         loader=FileSystemLoader('.'),
@@ -38,7 +38,9 @@ def main():
     foundation_year = datetime.datetime(year=1920, month=1, day=21)
     today = datetime.date.today()
 
-    render_page(foundation_year, today)
+    file_path = get_file_path()
+
+    render_page(foundation_year, today, file_path)
     start_server()
 
 
