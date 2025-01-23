@@ -54,9 +54,14 @@ python main.py --file "custom_wine_data.xlsx"
 
 ### 2. Передача через переменную окружения
 Вы также можете задать путь через переменную окружения WINE_FILE_PATH. Например:
+* Linux/MacOS:
 ```bash
 export WINE_FILE_PATH="custom_wine_data.xlsx"
 python main.py
+```
+* Windows:
+```bash
+set WINE_FILE_PATH=custom_data.xlsx
 ```
 
 ### 3. Использование значения по умолчанию
